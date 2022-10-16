@@ -2,7 +2,7 @@ import React from "react";
 import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import ImageGalleryItem from './ImageGallery/ImageGalleryItem/ImageGalleryItem';
-// import Button from './Button/Button';
+import Button from './Button/Button';
 import { Watch } from 'react-loader-spinner';
 import Modal from './Modal/Modal'
 import PropTypes from 'prop-types'; // ES6
@@ -18,8 +18,6 @@ class App extends React.Component {
   }
 
   componentDidUpdate(_, prev) {
-    console.log('prev.currentPage', prev.currentPage);
-    console.log('this.state.currentPage', this.state.currentPage);
     if (prev.currentPage !== this.state.currentPage || prev.query !== this.state.query) {
       this.fetchImages();
     }
@@ -72,16 +70,16 @@ class App extends React.Component {
 
 
   render() {
-    const { modal, images, modalImage,spinner } = this.state;
-    const { handleSubmit, toggleModal, handleLargeImage } = this;
-    // const loadButton = images.length > 0 && loadingButton;
+    const { modal, images, modalImage, spinner, loadingButton } = this.state;
+    const { handleSubmit, toggleModal, handleLargeImage, nextPage } = this;
+    const loadButton = images.length > 0 && loadingButton;
     return (
       <div className="App">
         <Searchbar onSubmit={handleSubmit} />
         <ImageGallery>
           <ImageGalleryItem openModal={toggleModal} getLargeImage={handleLargeImage} images={images} />
         </ImageGallery>
-        <button type='button' onClick={()=>{this.setState(prevState => ({        currentPage: prevState.currentPage + 1,  }))  }}>load</button>
+        {loadButton && <Button nextPage={nextPage} />}
         {spinner && <Watch
           height="80"
           width="80"
