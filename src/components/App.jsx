@@ -81,7 +81,7 @@ class App extends React.Component {
         <ImageGallery>
           <ImageGalleryItem openModal={toggleModal} getLargeImage={handleLargeImage} images={images} />
         </ImageGallery>
-        <button type='button' onClick={()=>{this.setState(prevState => ({        currentPage: prevState.currentPage += 1,  }))  }}>load</button>
+        <button type='button' onClick={()=>{this.setState(prevState => ({        currentPage: prevState.currentPage + 1,  }))  }}>load</button>
         {spinner && <Watch
           height="80"
           width="80"
