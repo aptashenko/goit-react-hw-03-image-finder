@@ -54,7 +54,7 @@ class App extends React.Component {
 
   nextPage = () => {
   this.setState(prevState => ({
-        currentPage: prevState.currentPage += 1,
+        currentPage: prevState.currentPage + 1,
   }))
   }
 
